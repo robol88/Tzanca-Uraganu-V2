@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         mp.setVolume(2f, 2f);
         Button btn = (Button) findViewById(R.id.button);
 
-        playOrPause();
+        if (!mp.isPlaying()) {
+            playOrPause();
+        }
 
 
     }
@@ -33,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         MediaPlayer mp = MediaPlayer.create(this, R.raw.malagie);
         mp.setVolume(2f, 2f);
         Button btn = (Button) findViewById(R.id.button);
-
-        btn.setOnClickListener(new View.OnClickListener() {
+            btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 a++;
@@ -47,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
                     mp.pause();
                     btn.setText("Play");
                 }
+            }
+        });
+
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                a = 0;
+                btn.setText("Play");
             }
         });
     }

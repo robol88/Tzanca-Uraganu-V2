@@ -51,7 +51,10 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+
 public class MainActivity extends AppCompatActivity {
+
+    public static int a=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         Button btn = (Button) findViewById(R.id.button);
 
         playOrPause();
-        playOrPause();
+
+
     }
 
     void playOrPause() {
@@ -71,29 +75,21 @@ public class MainActivity extends AppCompatActivity {
         mp.setVolume(2f, 2f);
         Button btn = (Button) findViewById(R.id.button);
 
-        if (!mp.isPlaying()) {
-            btn.setText("Play");
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!mp.isPlaying()) {
+                    a++;
+                    if(a == 2) { a = 0; }
+                    if (a==1) {
                         mp.start();
                         btn.setText("Pause");
-                        if (mp.isPlaying()) {
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (mp.isPlaying()) {
-                                        mp.pause();
-                                        btn.setText("Play");
-                                    }
-                                }
-                            });
-                        }
+                    }
+                    if(a==0) {
+                        mp.pause();
+                        btn.setText("Play");
                     }
                 }
             });
-        }
     }
 }
 ```

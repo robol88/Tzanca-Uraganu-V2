@@ -34,20 +34,20 @@ public class MainActivity extends AppCompatActivity {
         mp.setVolume(2f, 2f);
         Button btn = (Button) findViewById(R.id.button);
 
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    a++;
-                    if(a == 2) { a = 0; }
-                    if (a==1) {
-                        mp.start();
-                        btn.setText("Pause");
-                    }
-                    if(a==0) {
-                        mp.pause();
-                        btn.setText("Play");
-                    }
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a++;
+                if(a == 2) { a = 0; }
+                if (a==1) {
+                    mp.start();
+                    btn.setText("Pause");
                 }
-            });
+                if(a==0) {
+                    mp.pause();
+                    btn.setText("Play");
+                }
+            }
+        });
     }
 }
